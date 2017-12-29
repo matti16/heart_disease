@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hearth Disease</title>
+
+    <link rel="stylesheet" href="https://gitcdn.link/repo/angular/bower-material/master/angular-material.css">
+
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="https://gitcdn.link/repo/angular/bower-material/master/angular-material.js"></script>
+
+    <!-- Angular Controller -->
+    <script src="/static/scripts/HearthDiseaseController.js"></script>
+
+</head>
+
+<body>
+    <div ng-app="hearthDisease" ng-controller="HearthDiseaseController as ctrl">
+        <md-content md-theme="docs-dark" style="height: 100vh">
+            <md-toolbar class="md-tall">
+                <h1 class="md-toolbar-tools">
+                    <span><b>Hearth Angiographic Disease</b></span>
+
+                    <span flex></span>
+                    <md-button class="md-icon-button" aria-label="Hearth" ng-disable="true">
+                      <md-icon md-svg-icon="/static/img/icons/ic_favorite_white_24px.svg"></md-icon>
+                    </md-button>
+                </h1>
+            </md-toolbar>
+
+            <div layout="row" style="margin-top: 3vw">
+                <div layout="column" style="margin-left: 25vw">
+
+                    <md-select ng-model="ctrl.sex">
+                      <label>Sex</label>
+                      <md-option value="1">Male</md-option>
+                      <md-option value="0">Female</md-option>
+                    </md-select>
+
+                    <md-datepicker ng-model="ctrl.birthday" md-placeholder="Birthday">
+                    </md-datepicker>
+
+                    <md-checkbox ng-model="ctrl.htn" aria-label="Hypertension" class="md-primary">
+                        Hypertension
+                    </md-checkbox>
+
+                    <md-checkbox ng-model="ctrl.fbs" aria-label="Fasting Blood Sugar" class="md-primary">
+                        Fasting Blood Sugar > 120 mg/dl
+                    </md-checkbox>
+
+                    <md-checkbox ng-model="ctrl.famhist" aria-label="Family History" class="md-primary">
+                        Family History of Coronary Artery Disease
+                    </md-checkbox>
+
+                </div>
+                <div layout="column" style="margin-left: 25vw">
+                </div>
+            </div>
+        </md-content>
+    </div>
+</body>
+</html>
