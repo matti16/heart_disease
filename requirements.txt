@@ -1,0 +1,4 @@
+pandas
+gunicorn
+flask
+scikit-learn
