@@ -1,7 +1,7 @@
 from flask import Flask, current_app
 from flask import jsonify
 
-import model
+import app.model as model
 
 app = Flask(__name__)
 
