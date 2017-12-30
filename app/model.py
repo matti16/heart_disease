@@ -2,7 +2,7 @@ import pandas as pd
 import os
 from sklearn.externals import joblib
 
-MODEL_FOLDER = os.path.join("..", "models")
+MODEL_FOLDER = os.path.join("models")
 
 MIN_AGE = 25
 MAX_AGE = 80
