@@ -15,15 +15,27 @@
     <!-- Angular Material Library -->
     <script src="https://gitcdn.link/repo/angular/bower-material/master/angular-material.js"></script>
 
+    <!-- Plotly Library -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
     <!-- Angular Controller -->
     <script src="/static/scripts/HearthDiseaseController.js"></script>
 
 </head>
 
+<style>
+    .marginTop{
+        margin-top: 3vh;
+    }
+    .modebar{
+      display: none !important;
+    }
+</style>
+
 <body>
     <div ng-app="hearthDisease" ng-controller="HearthDiseaseController as ctrl">
         <md-content md-theme="docs-dark" style="height: 100vh">
-            <md-toolbar class="md-tall">
+            <md-toolbar class="md-primary">
                 <h1 class="md-toolbar-tools">
                     <span><b>Hearth Angiographic Disease</b></span>
 
@@ -35,18 +47,18 @@
             </md-toolbar>
 
             <div layout="row" style="margin-top: 3vw">
-                <div layout="column" style="margin-left: 25vw">
-
-                    <md-select ng-model="ctrl.sex">
-                      <label>Sex</label>
+                <div layout="column" style="margin-left: 22vw">
+                <form layout="column">
+                    <label>Sex</label>
+                    <md-select ng-model="ctrl.sex" required>
                       <md-option value="1">Male</md-option>
                       <md-option value="0">Female</md-option>
                     </md-select>
 
-                    <md-datepicker ng-model="ctrl.birthday" md-placeholder="Birthday">
-                    </md-datepicker>
+                    <label>Age</label>
+                    <input required type="number" step="any" name="age" ng-model="ctrl.age" class="md-primary"/>
 
-                    <md-checkbox ng-model="ctrl.htn" aria-label="Hypertension" class="md-primary">
+                    <md-checkbox ng-model="ctrl.htn" aria-label="Hypertension" class="md-primary" style="margin-top:5vh">
                         Hypertension
                     </md-checkbox>
 
@@ -58,8 +70,37 @@
                         Family History of Coronary Artery Disease
                     </md-checkbox>
 
+                    <label class="marginTop">Cholesterol</label>
+                    <input required type="number" step="any" name="chol" ng-model="ctrl.chol"/>
+
+                    <label class="marginTop">Years as smoker</label>
+                    <input required type="number" step="any" name="years" ng-model="ctrl.years"/>
+
+                    <label class="marginTop">Average number of Cigarettes per day</label>
+                    <input required type="number" step="any" name="cigs" ng-model="ctrl.cigs"/>
+
+                    <md-button type="submit" class="md-raised md-primary marginTop" ng-click="ctrl.getProbabilities()">
+                        Submit
+                        <md-icon md-svg-icon="/static/img/icons/ic_favorite_white_24px.svg"></md-icon>
+                    </md-button>
+                </form>
                 </div>
-                <div layout="column" style="margin-left: 25vw">
+
+                <div layout="column" style="margin-left: 10vw">
+                    <md-card style="width: 100%" ng-show="prob">
+                        <center>
+                            <md-card-title>
+                              <md-card-title-text>
+                                <span class="md-headline">Probability of Angiographic Disease</span>
+                              </md-card-title-text>
+                            </md-card-title>
+                            <md-card-content>
+                                <h1>{{ prob | number : 2 }}%</h1>
+                            </md-card-content>
+                        </center>
+                    </md-card>
+
+                    <div id="agesPlot" style="width:600px;height:400px;" class="md-primary"></div>
                 </div>
             </div>
         </md-content>
